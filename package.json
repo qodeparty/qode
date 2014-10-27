@@ -1,0 +1,31 @@
+{
+  "name": "qode",
+  "version": "0.1.1",
+  "description": "Low level utility library for backend JS",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qodeparty/qode.git"
+  },
+  "keywords": [
+    "util",
+    "robot",
+    "console",
+    "hash",
+    "transform",
+    "string"
+  ],
+  "devDependencies": {
+
+    "microtime" : "latest",
+    "nodeunit"  : "latest",
+    "benchmark" : "latest"
+    
+  },
+  "author": "Avi Damasi <dev@qodeninja.com> (http://qodeparty.com/dist)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/qodeparty/qode/issues"
+  },
+  "homepage": "https://github.com/qodeparty/qode"
+}

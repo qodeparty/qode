@@ -28,6 +28,7 @@
   let mergeLeft  = obj.mergeLeft;
   let collapse   = obj.collapse;
   let headless   = obj.headless;
+  let listPlus   = obj.listPlus;
 
 
 /*/////////////////////////////////////////////////////////////////////////////

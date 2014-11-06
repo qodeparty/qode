@@ -11,7 +11,7 @@
 
   var qode = require('../lib');
 
-  var program  = qode.cli;
+  var program  = qode.bin;
                  program
                  .option('-s --silly [love]', 'ok girl')
                  .option('-x --no-love [love]', 'love off girl');

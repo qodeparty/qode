@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/qodeparty/qode.git"
+    "url": "https://github.com/qodeparty/pike.git"
   },
   "keywords": [
     "util",
@@ -19,7 +19,8 @@
 
     "microtime" : "latest",
     "nodeunit"  : "latest",
-    "benchmark" : "latest"
+    "benchmark" : "latest",
+    "ben"  : "latest"
     
   },
   "author": "Avi Damasi <dev@qodeninja.com> (http://qodeparty.com/dist)",

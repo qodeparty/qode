@@ -14,6 +14,7 @@
   var program  = qode.bin;
                  program
                  .option('-s --silly [love]', 'ok girl')
-                 .option('-x --no-love [love]', 'love off girl');
-
-  console.log(program);
+                 .option('-x --love --no-love [love]', 'love off girl')
+                 .option('-c --chicken', 'has a chicken')
+                 .option('-d --no', 'debug a chicken');
+  console.log( program.parse(process.argv) );

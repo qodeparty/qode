@@ -6,7 +6,7 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////*/
   var Benchmark = require('benchmark');
-                  Benchmark.options.minSamples = 1000;
+                  Benchmark.options.minSamples = 100;
   var suite     = new Benchmark.Suite();
 
 
@@ -29,6 +29,18 @@
 
       indexOfShort : function( str ){
         return (str.indexOf('-') === 0);
+      },
+
+      strAt : function( str ){
+        return (str[0] === '-');
+      },
+
+      strShort : function( str ){
+        return (str[0] === '-' && str[1] !== '-');
+      },
+
+      strLong: function( str ){
+        return (str[0] === '-' && str[1] === '-');
       },
 
       charAt : function( str ){
@@ -56,7 +68,7 @@
   var fkeys = Object.keys( f );
   var skeys = Object.keys( s );
 
-  var fastFns = [ 'charAt' ];
+  var fastFns = [ 'charAt', 'strAt', 'strLong', 'strShort' ];
   var fastStr = [ 'blank', 'longopt' ];
   //strategy 
   // 1. check for flag markers indexOf is 73% faster
@@ -67,9 +79,11 @@
   function tryBenchmark2(){
 
     console.info('--Setting up suites', skeys);
-
-    for( let i = 0, len = fastFns.length; i < len; i++ ){
-      let name = fastFns[i];
+    fkeys = fastFns;
+    skeys = fastStr;
+    
+    for( let i = 0, len = fkeys.length; i < len; i++ ){
+      let name = fkeys[i];
       for( let j = 0, slen = skeys.length; j < slen; j++ ){
         let str = skeys[j];
         let flag = s[ str ];
@@ -84,17 +98,44 @@
 
     }
 
-    console.info('--Done adding suites');
-    console.info('--------------------');
-
     suite.on('cycle', function(event) {
       console.log(String(event.target));
     }).on('complete', function() {
       console.log('Fastest is ' + this.filter('fastest').pluck('name'));
     }).run({ 'async': true });
 
+
+    console.info('--Done adding suites');
+    console.info('--------------------');
+
   }
 
+  function tryCharTest(){
+    console.info('--Setting up char');
+    var str = 'hello';
+
+    suite.add( 'strArr', function(){
+      var c = str[0];
+    }).add( 'charAt', function(){
+      var c = str.charAt(0);
+    }).on('cycle', function(event) {
+      console.log(String(event.target));
+    }).on('complete', function() {
+      console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+    }).run();
+
+  }
+
+  // function exec(){
+  //   suite.on('cycle', function(event) {
+  //     console.log(String(event.target));
+  //   }).on('complete', function() {
+  //     console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+  //   }).run({ 'async': true });
+
+  // }
 
 
   tryBenchmark2();
+  tryCharTest();
+  //exec();

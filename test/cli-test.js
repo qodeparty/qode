@@ -11,10 +11,12 @@
 
   var qode = require('../lib');
 
-  var cliopatra  = qode.cliopatra;
-                 cliopatra
-                 .option('-s --silly [love]', 'ok girl')
-                 .option('-x --love --no-love [love]', 'love off girl')
-                 .option('-c --chicken', 'has a chicken')
-                 .option('-d --no', 'debug a chicken');
-  console.log( cliopatra.parse(process.argv) );
+  var cliopatra  = qode.clio();
+
+      cliopatra
+      .option('-s= ^we &ui --silly --nilly --illy (f1) ? ? ?', 'ok girl')
+      .option('-x --love  --no [f1] [f2]', 'love off girl')
+      .option('-c --color --no', 'has a chicken');
+
+  cliopatra.parse( process.argv );
+  //console.log( cliopatra.parse(process.argv) );

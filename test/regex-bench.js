@@ -16,6 +16,7 @@
 
   var isFlag = /^(-|--)[^-]$/;
 
+  var isShort = /^-[:alnum:][:]?$/;
 
   var f = {
 
@@ -76,39 +77,39 @@
 /*/////////////////////////////////////////////////////////////////////////////
 // Tests
 /////////////////////////////////////////////////////////////////////////////*/
-  function tryBenchmark2(){
+  // function tryBenchmark2(){
 
-    console.info('--Setting up suites', skeys);
-    fkeys = fastFns;
-    skeys = fastStr;
+  //   console.info('--Setting up suites', skeys);
+  //   fkeys = fastFns;
+  //   skeys = fastStr;
     
-    for( let i = 0, len = fkeys.length; i < len; i++ ){
-      let name = fkeys[i];
-      for( let j = 0, slen = skeys.length; j < slen; j++ ){
-        let str = skeys[j];
-        let flag = s[ str ];
-        let fn  = f[ name ];
-        let id  = [ '[ ',  name, ' ][', str, ']' ].join('');
-        console.log('Added test suite', id );
-        suite.add( id, function(){
-          fn(flag);
-        });
+  //   for( let i = 0, len = fkeys.length; i < len; i++ ){
+  //     let name = fkeys[i];
+  //     for( let j = 0, slen = skeys.length; j < slen; j++ ){
+  //       let str = skeys[j];
+  //       let flag = s[ str ];
+  //       let fn  = f[ name ];
+  //       let id  = [ '[ ',  name, ' ][', str, ']' ].join('');
+  //       console.log('Added test suite', id );
+  //       suite.add( id, function(){
+  //         fn(flag);
+  //       });
       
-      } 
+  //     } 
 
-    }
+  //   }
 
-    suite.on('cycle', function(event) {
-      console.log(String(event.target));
-    }).on('complete', function() {
-      console.log('Fastest is ' + this.filter('fastest').pluck('name'));
-    }).run({ 'async': true });
+  //   suite.on('cycle', function(event) {
+  //     console.log(String(event.target));
+  //   }).on('complete', function() {
+  //     console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+  //   }).run({ 'async': true });
 
 
-    console.info('--Done adding suites');
-    console.info('--------------------');
+  //   console.info('--Done adding suites');
+  //   console.info('--------------------');
 
-  }
+  // }
 
   function tryCharTest(){
     console.info('--Setting up char');
@@ -118,6 +119,8 @@
       var c = str[0];
     }).add( 'charAt', function(){
       var c = str.charAt(0);
+    }).add( 'isShort', function(){
+      var c = isShort.test(str);
     }).on('cycle', function(event) {
       console.log(String(event.target));
     }).on('complete', function() {
@@ -136,6 +139,6 @@
   // }
 
 
-  tryBenchmark2();
+  //tryBenchmark2();
   tryCharTest();
   //exec();

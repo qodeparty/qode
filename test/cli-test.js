@@ -18,5 +18,7 @@
       .option('-x --love  --no [f1] [f2]', 'love off girl')
       .option('-c --color --no', 'has a chicken');
 
+      .option('-c, --color [ flag ]') 
+      .option('-v, --verbose [ flag ]') 
   cliopatra.parse( process.argv );
   //console.log( cliopatra.parse(process.argv) );
